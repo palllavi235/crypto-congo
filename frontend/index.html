@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decentralized News</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Decentralized News</h1>
+    <button id="connectWallet">Connect Wallet</button>
+  </header>
+
+  <main>
+    <!-- News Feed Section -->
+    <section>
+      <h2>Latest News</h2>
+      <div class="news-card">
+        <h3>Breaking News!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+        <p><strong>Author:</strong> 0x1234...abcd</p>
+        <button>Read More</button>
+      </div>
+      <div class="news-card">
+        <h3>Crypto Market Surges</h3>
+        <p>Consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+        <p><strong>Author:</strong> 0x5678...efgh</p>
+        <button>Read More</button>
+      </div>
+    </section>
+
+    <!-- Submit News Section -->
+    <section>
+      <h2>Submit News</h2>
+      <form id="submitNewsForm">
+        <input type="text" id="newsTitle" placeholder="Title" required>
+        <textarea id="newsContent" placeholder="Content" rows="4" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>A decentralized news system built on blockchain.</p>
+    <a href="#" target="_blank">GitHub</a> | 
+    <a href="#" target="_blank">Team</a> | 
+    <a href="#" target="_blank">Hackathon</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
