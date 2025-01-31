@@ -1,53 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decentralized News</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized News</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
+
+<header>
     <h1>Decentralized News</h1>
     <button id="connectWallet">Connect Wallet</button>
-  </header>
+</header>
 
-  <main>
-    <!-- News Feed Section -->
-    <section>
-      <h2>Latest News</h2>
-      <div class="news-card">
-        <h3>Breaking News!</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
-        <p><strong>Author:</strong> 0x1234...abcd</p>
-        <button>Read More</button>
-      </div>
-      <div class="news-card">
-        <h3>Crypto Market Surges</h3>
-        <p>Consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
-        <p><strong>Author:</strong> 0x5678...efgh</p>
-        <button>Read More</button>
-      </div>
+<main>
+    <!-- News Section -->
+    <section class="news-grid">
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 4</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 5</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="https://imgs.search.brave.com/AksC2Ziq0t6mY7p-Rl0F5tv8Rz_7_M37SrimpZUSBC4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aW52ZXN0b3BlZGlh/LmNvbS90aG1iL3hO/cllaYWpYNVpza0Nz/d0U4cGlyaHhPa3g3/TT0vNDAweDMwMC9m/aWx0ZXJzOm5vX3Vw/c2NhbGUoKTptYXhf/Ynl0ZXMoMTUwMDAw/KTpzdHJpcF9pY2Mo/KS9HZXR0eUltYWdl/cy0xNDAxODg3NTUz/LTA0MGYxNDQ0Nzk2/NzQzZTlhMTU3MjBl/N2NhNzMzOGI5Lmpw/Zw" alt="News Image">
+            <div class="news-content">
+                <h3>Breaking News Title 6</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <button>Read More</button>
+            </div>
+        </div>
     </section>
 
-    <!-- Submit News Section -->
-    <section>
-      <h2>Submit News</h2>
-      <form id="submitNewsForm">
-        <input type="text" id="newsTitle" placeholder="Title" required>
-        <textarea id="newsContent" placeholder="Content" rows="4" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
+    <!-- Submit News Form -->
+    <section class="news-form-section">
+        <h2>Submit Your News</h2>
+        <form id="submitNewsForm">
+            <input type="text" id="newsTitle" placeholder="Enter News Title" required>
+            <textarea id="newsContent" placeholder="Enter Full News Content" required></textarea>
+            <input type="file" id="newsMedia" accept="image/*">
+            <button type="submit">Submit</button>
+        </form>
     </section>
-  </main>
+</main>
 
-  <footer>
-    <p>A decentralized news system built on blockchain.</p>
-    <a href="#" target="_blank">GitHub</a> | 
-    <a href="#" target="_blank">Team</a> | 
-    <a href="#" target="_blank">Hackathon</a>
-  </footer>
+<footer>
+    <p>&copy; 2025 Decentralized News | <a href="#">Privacy Policy</a></p>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
