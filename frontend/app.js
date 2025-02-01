@@ -38,3 +38,16 @@ function App() {
 }
 
 export default App;
+useEffect(() => {
+  if (window.ethereum) {
+    window.ethereum.on("chainChanged", (chainId) => {
+      console.log("Chain changed:", chainId);
+      window.location.reload();
+    });
+
+    window.ethereum.on("accountsChanged", (accounts) => {
+      console.log("Account changed:", accounts[0]);
+      setAccount(accounts[0]);
+    });
+  }
+}, []);
