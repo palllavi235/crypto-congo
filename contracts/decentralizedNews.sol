@@ -1,114 +1,93 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.5.16;
 
 contract DecentralizedNews {
-    struct News {
+    struct NewsArticle {
         uint id;
         string title;
+        string description;
         string content;
-        string mediaHash;
-        address author;
-        uint upvotes;
-        uint downvotes;
+        address payable author;
+        uint votes;
         uint timestamp;
-        bool isRemoved;
     }
 
     uint public newsCount = 0;
-    mapping(uint => News) public newsArticles;
-    mapping(address => bool) public admins;
-    mapping(uint => mapping(address => bool)) public hasVoted; // Track votes per article
+    mapping(uint => NewsArticle) public newsArticles;
 
-    address public owner;
-    event NewsSubmitted(uint id, string title, address indexed author, uint timestamp);
-    event NewsVoted(uint id, address indexed voter, bool upvote);
-    event NewsRemoved(uint id, address indexed admin);
+    event NewsSubmitted(uint id, string title, string description, string content, address author, uint timestamp);
+    event NewsVoted(uint id, uint votes);
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can perform this action");
-        _;
-    }
-
-    modifier onlyAdmin() {
-        require(admins[msg.sender] || msg.sender == owner, "Only admins can perform this action");
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    function addAdmin(address _admin) public onlyOwner {
-        admins[_admin] = true;
-    }
-
-    function removeAdmin(address _admin) public onlyOwner {
-        admins[_admin] = false;
-    }
-
-    function submitNews(string memory _title, string memory _content, string memory _mediaHash) public {
-        require(bytes(_title).length > 0, "Title cannot be empty");
-        require(bytes(_content).length > 0, "Content cannot be empty");
-
+    function submitNews(string memory _title, string memory _description, string memory _content) public {
         newsCount++;
-        newsArticles[newsCount] = News(newsCount, _title, _content, _mediaHash, msg.sender, 0, 0, block.timestamp, false);
-        
-        emit NewsSubmitted(newsCount, _title, msg.sender, block.timestamp);
+        newsArticles[newsCount] = NewsArticle(
+            newsCount,
+            _title,
+            _description,
+            _content,
+            msg.sender,
+            0,
+            now // `now` is used instead of `block.timestamp` in Solidity 0.5.16
+        );
+        emit NewsSubmitted(newsCount, _title, _description, _content, msg.sender, now);
     }
 
-    function voteNews(uint _id, bool _upvote) public {
+    function voteNews(uint _id) public {
         require(_id > 0 && _id <= newsCount, "Invalid news ID");
-        require(!hasVoted[_id][msg.sender], "Already voted");
-
-        News storage article = newsArticles[_id];
-        require(!article.isRemoved, "Article is removed");
-
-        if (_upvote) {
-            article.upvotes++;
-        } else {
-            article.downvotes++;
-        }
-
-        hasVoted[_id][msg.sender] = true;
-        emit NewsVoted(_id, msg.sender, _upvote);
+        newsArticles[_id].votes++;
+        emit NewsVoted(_id, newsArticles[_id].votes);
     }
 
-    function removeNews(uint _id) public onlyAdmin {
+    function getNews(uint _id) public view returns (
+        uint id,
+        string memory title,
+        string memory description,
+        string memory content,
+        address payable author,
+        uint votes,
+        uint timestamp
+    ) {
         require(_id > 0 && _id <= newsCount, "Invalid news ID");
-
-        News storage article = newsArticles[_id];
-        require(!article.isRemoved, "Already removed");
-
-        article.isRemoved = true;
-        emit NewsRemoved(_id, msg.sender);
+        NewsArticle memory article = newsArticles[_id];
+        return (
+            article.id,
+            article.title,
+            article.description,
+            article.content,
+            article.author,
+            article.votes,
+            article.timestamp
+        );
     }
 
-    function getNews(uint _id) public view returns (News memory) {
-        require(_id > 0 && _id <= newsCount, "Invalid news ID");
-        return newsArticles[_id];
-    }
-
-    function getAllNews() public view returns (News[] memory) {
-        News[] memory allNews = new News[](newsCount);
-        uint counter = 0;
+    function getAllNews() public view returns (
+        uint[] memory,
+        string[] memory,
+        string[] memory,
+        string[] memory,
+        address[] memory,
+        uint[] memory,
+        uint[] memory
+    ) {
+        uint[] memory ids = new uint[](newsCount);
+        string[] memory titles = new string[](newsCount);
+        string[] memory descriptions = new string[](newsCount);
+        string[] memory contents = new string[](newsCount);
+        address[] memory authors = new address[](newsCount);
+        uint[] memory votes = new uint[](newsCount);
+        uint[] memory timestamps = new uint[](newsCount);
 
         for (uint i = 1; i <= newsCount; i++) {
-            if (!newsArticles[i].isRemoved) {
-                allNews[counter] = newsArticles[i];
-                counter++;
-            }
+            NewsArticle memory article = newsArticles[i];
+            ids[i - 1] = article.id;
+            titles[i - 1] = article.title;
+            descriptions[i - 1] = article.description;
+            contents[i - 1] = article.content;
+            authors[i - 1] = article.author;
+            votes[i - 1] = article.votes;
+            timestamps[i - 1] = article.timestamp;
         }
 
-        return allNews;
-    }
-
-    function tipJournalist(uint _id) public payable {
-        require(_id > 0 && _id <= newsCount, "Invalid news ID");
-        require(msg.value > 0, "Must send some ETH");
-
-        News storage article = newsArticles[_id];
-        require(!article.isRemoved, "Article is removed");
-
-        payable(article.author).transfer(msg.value);
+        return (ids, titles, descriptions, contents, authors, votes, timestamps);
     }
 }
