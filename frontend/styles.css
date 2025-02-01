@@ -24,13 +24,16 @@ header h1 {
 }
 
 header button {
-  background-color: #03dac6;
+  background-color: #19ca4c;
   border: none;
   padding: 0.8rem 1.6rem;
   color: white;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;
+}
+header button:hover {
+  background-color: #549e8d;
 }
 
 /* News Grid */
@@ -84,6 +87,9 @@ header button {
   font-size: 1rem;
   border-radius: 5px;
 }
+news-content button:hover {
+  background-color: #8683ba;
+}
 
 /* Submit News Form */
 .news-form-section {
@@ -121,6 +127,9 @@ form button {
   font-size: 1.2rem;
   border-radius: 5px;
 }
+form button:hover {
+  background-color: #8683ba;
+}
 
 /* Footer */
 footer {
@@ -135,4 +144,7 @@ footer a {
   color: #03dac6;
   text-decoration: none;
   font-size: 1rem;
+  margin: 0 3rem;
+
+
 }
