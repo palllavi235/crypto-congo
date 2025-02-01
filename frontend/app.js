@@ -1,24 +1,40 @@
-import Web3 from "web3";
+import React, { useEffect, useState } from "react";
+import getContract from "./contract";
+import getWeb3 from "./web3";
 
-const connectMetaMask = async () => {
-  if (window.ethereum) {
-    try {
-      // Request account access
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-      const web3 = new Web3(window.ethereum);
-      console.log("MetaMask connected!");
-      return web3;
-    } catch (error) {
-      console.error("User denied account access");
+function App() {
+  const [account, setAccount] = useState("");
+  const [contract, setContract] = useState(null);
+
+  useEffect(() => {
+    const init = async () => {
+      const web3 = await getWeb3();
+      const contract = await getContract();
+      const accounts = await web3.eth.getAccounts();
+      setContract(contract);
+      setAccount(accounts[0]);
+    };
+    init();
+  }, []);
+
+  const handleConnect = async () => {
+    const web3 = await getWeb3();
+    if (web3) {
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
     }
-  } else if (window.web3) {
-    // Legacy dapp browsers
-    const web3 = new Web3(window.web3.currentProvider);
-    console.log("MetaMask connected!");
-    return web3;
-  } else {
-    console.log("Non-Ethereum browser detected. Install MetaMask!");
-  }
-};
+  };
 
-export default connectMetaMask;
+  return (
+    <div>
+      <h1>Decentralized News Platform</h1>
+      {account ? (
+        <p>Connected Account: {account}</p>
+      ) : (
+        <button onClick={handleConnect}>Connect MetaMask</button>
+      )}
+    </div>
+  );
+}
+
+export default App;
